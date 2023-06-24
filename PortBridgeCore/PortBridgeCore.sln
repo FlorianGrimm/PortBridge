@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortBridge", "PortBridge\PortBridge.csproj", "{E154D09D-2838-43E3-B603-689889E38B3A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortBridgeClientAgent", "PortBridgeClientAgent\PortBridgeClientAgent.csproj", "{802ABC91-D1A9-457A-96B3-D56DCDD11685}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortBridgeServerAgent", "PortBridgeServerAgent\PortBridgeServerAgent.csproj", "{66EE2999-FFCC-4889-9507-C2CEF6A12FF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E154D09D-2838-43E3-B603-689889E38B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E154D09D-2838-43E3-B603-689889E38B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E154D09D-2838-43E3-B603-689889E38B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E154D09D-2838-43E3-B603-689889E38B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{802ABC91-D1A9-457A-96B3-D56DCDD11685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{802ABC91-D1A9-457A-96B3-D56DCDD11685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{802ABC91-D1A9-457A-96B3-D56DCDD11685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{802ABC91-D1A9-457A-96B3-D56DCDD11685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66EE2999-FFCC-4889-9507-C2CEF6A12FF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EE2999-FFCC-4889-9507-C2CEF6A12FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EE2999-FFCC-4889-9507-C2CEF6A12FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EE2999-FFCC-4889-9507-C2CEF6A12FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
