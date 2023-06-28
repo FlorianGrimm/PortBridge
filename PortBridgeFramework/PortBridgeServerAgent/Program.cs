@@ -5,6 +5,7 @@ namespace PortBridgeServerAgent
 {
     using System;
     using System.Configuration;
+    using System.Net;
     using System.ServiceProcess;
     using PortBridge;
 
@@ -23,6 +24,8 @@ namespace PortBridgeServerAgent
         static void Main(string[] args)
         {
             PrintLogo();
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
             var settings = ConfigurationManager.GetSection("portBridge") as PortBridgeSection;
             if (settings != null)

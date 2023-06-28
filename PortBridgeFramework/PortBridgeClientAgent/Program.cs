@@ -27,6 +27,8 @@ namespace PortBridgeClientAgent
         {
             PrintLogo();
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
+
             PortBridgeAgentSection settings = ConfigurationManager.GetSection("portBridgeAgent") as PortBridgeAgentSection;
             if (settings != null)
             {
