@@ -12,14 +12,17 @@ namespace PortBridgeClientAgent
 
     class Program
     {
-        static bool runOnConsole;
-        static int fromPort = -1;
-        static int toPort = -1;
-        static string serviceNamespace;
-        static string accessRuleName;
-        static string accessRuleKey;
-        static string cmdlineTargetHost;
-        
+        private static bool runOnConsole;
+        private static bool runAsService;
+        private static bool uninstallService;
+        private static bool installService;
+        private static int fromPort = -1;
+        private static int toPort = -1;
+        private static string serviceNamespace;
+        private static string accessRuleName;
+        private static string accessRuleKey;
+        private static string cmdlineTargetHost;
+
         static void Main(string[] args)
         {
             PrintLogo();
@@ -126,20 +129,31 @@ namespace PortBridgeClientAgent
                         null,
                         firewallRules));
             }
-
+            runAsService = !runOnConsole;
             if (!runOnConsole)
             {
                 ServiceController sc = new ServiceController("PortBridgeAgentService");
                 try
                 {
                     var status = sc.Status;
+                    if (status == ServiceControllerStatus.Stopped) {
+                        runOnConsole = true;
+                        runAsService = false;
+                    }
                 }
                 catch (SystemException)
                 {
                     runOnConsole = true;
                 }
             }
-
+            if (uninstallService) {
+                ManagedInstallerClass.InstallHelper(new string[] { "/u", typeof(Program).Assembly.Location });
+                runAsService = runOnConsole = false;
+            }
+            if (installService) {
+                ManagedInstallerClass.InstallHelper(new string[] { typeof(Program).Assembly.Location });
+                runAsService = runOnConsole = false;
+            }
             if (runOnConsole)
             {
                 host.Open();
@@ -147,14 +161,9 @@ namespace PortBridgeClientAgent
                 Console.ReadLine();
                 host.Close();
             }
-            else
+            if (runAsService)
             {
-                ServiceBase[] ServicesToRun;
-                ServicesToRun = new ServiceBase[]
-                {
-                    new PortBridgeAgentService(host)
-                };
-                ServiceBase.Run(ServicesToRun);
+                ServiceBase.Run(new ServiceBase[] { new PortBridgeAgentService(host) });
             }
         }
 
@@ -193,6 +202,16 @@ namespace PortBridgeClientAgent
                             case 'c':
                             case 'C':
                                 runOnConsole = true;
+                                lastOpt = default(char);
+                                break;
+                            case 'i':
+                            case 'I':
+                                installService = true;
+                                lastOpt = default(char);
+                                break;
+                            case 'u':
+                            case 'U':
+                                uninstallService = true;
                                 lastOpt = default(char);
                                 break;
                         }
